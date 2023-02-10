@@ -1,0 +1,31 @@
+.popup__edit {
+	width: 27.969vw;
+	height: 22.483vh;
+	background-color: #fff;
+	color: #000;
+	padding: 34px 36px 37px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 27px;
+	border-radius: 10px;
+}
+
+@media (max-width:1100px) {
+	.popup__edit {
+		padding: 25px 22px;
+		row-gap: 20px;
+	}
+}
+
+@media (max-width:988px) {
+	.popup__edit {
+		width: 238px;
+	}
+}
+
+@media (max-width:545px) {
+	.popup__edit {
+		row-gap: 41px;
+		height: 23.483vh;
+	}
+}
