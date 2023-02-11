@@ -6,9 +6,3 @@
 	font-size: 24px;
 	line-height: 1.20;
 }
-
-@media (max-width: 768px) {
-	.elements__caption {
-		font-size: 24px;
-	}
-}

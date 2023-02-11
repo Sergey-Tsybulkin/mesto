@@ -1,6 +1,6 @@
 .popup__save {
-	padding: 14px 0 13px;
-	margin-top: 23px;
+	padding: 14px 0 14px;
+	margin-top: 49px;
 	background-color: #000;
 	color: #fff;
 	font-weight: 400;
@@ -25,6 +25,6 @@
 
 @media (max-width:545px) {
 	.popup__save {
-		margin-top: 14px;
+		margin-top: 46px;
 	}
 }
