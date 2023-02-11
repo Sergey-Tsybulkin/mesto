@@ -10,7 +10,7 @@
 	max-width: 336px;
 }
 
-@media (max-width: 770px) {
+@media (max-width: 780px) {
 	.profile__info {
 		max-width: 282px;
 		padding-left: 18px;
