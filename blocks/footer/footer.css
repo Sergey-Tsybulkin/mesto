@@ -1,9 +1,5 @@
 .footer {
 	padding-bottom: 60px;
-	color: #545454;
-	font-weight: 400;
-	font-size: 18px;
-	line-height: 1.22;
 	width: 68.75%;
 }
 
@@ -15,8 +11,7 @@
 
 @media (max-width: 768px) {
 	.footer {
-		font-size: 14px;
-		line-height: 1.21;
 		width: 88%;
+		padding-bottom: 36px;
 	}
 }
