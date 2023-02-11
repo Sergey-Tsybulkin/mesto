@@ -9,7 +9,7 @@ let profileSubtitle = document.querySelector(".profile__subtitle");
 
 editButton.addEventListener("click", function () {
   popup.classList.add("popup_opened");
-	inputName.value = profileTitle.textContent;
+  inputName.value = profileTitle.textContent;
   inputAbout.value = profileSubtitle.textContent;
 });
 
