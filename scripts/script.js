@@ -1,3 +1,45 @@
+const initialCards = [
+  {
+    name: 'Дагестан',
+    link: './images/dagestan.jpg',
+  },
+  {
+    name: 'Москва',
+    link: './images/moscow.jpg',
+  },
+  {
+    name: 'Мурманск',
+    link: './images/murmansk.jpg',
+  },
+  {
+    name: 'Нижний Новгород',
+    link: './images/nijniy_novgorod.jpg',
+  },
+  {
+    name: 'Омск',
+    link: './images/omsk.jpg',
+  },
+  {
+    name: 'Санкт-Петербург',
+    link: './images/saint_pitersburg.jpg',
+  },
+];
+
+for (let elem of initialCards) {
+  const cardElement = elementsTemplate
+    .querySelector('.elements__element')
+    .cloneNode(true); //li + clone
+  const cardImage = cardElement.querySelector('.elements__image');
+  cardImage.src = elem.link;
+  cardImage.alt = elem.name;
+  cardElement.querySelector('.elements__caption').textContent = elem.name;
+  toggleLikeButton(cardElement);
+  removeListItem(cardElement);
+  openImage(cardImage);
+  cardElements.append(cardElement); //append to ul
+}
+
+
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 
@@ -39,37 +81,11 @@ function closeWindowImage() {
   popupImage.classList.remove('popup_opened');
 }
 
-editButton.addEventListener('click', function () {
-  popupEdit.classList.add('popup_opened');
-  inputName.value = profileTitle.textContent;
-  inputAbout.value = profileSubtitle.textContent;
-});
-
-addButton.addEventListener('click', function () {
-  popupAdd.classList.add('popup_opened');
-});
-
-closeButtonEdit.addEventListener('click', closeWindowEdit);
-
-closeButtonAdd.addEventListener('click', closeWindowAdd);
-
-closeButtonImage.addEventListener('click', closeWindowImage);
-
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = inputName.value;
   profileSubtitle.textContent = inputAbout.value;
   closeWindowEdit();
-}
-
-popupFormEdit.addEventListener('submit', handleEditFormSubmit);
-
-function toggleLikeButton(card_element) {
-  card_element
-    .querySelector('.elements__like-button')
-    .addEventListener('click', (evt) => {
-      evt.target.classList.toggle('elements__like-button_disabled');
-    });
 }
 
 function addListItem() {
@@ -96,6 +112,14 @@ function removeListItem(card_element) {
   });
 }
 
+function toggleLikeButton(card_element) {
+  card_element
+    .querySelector('.elements__like-button')
+    .addEventListener('click', (evt) => {
+      evt.target.classList.toggle('elements__like-button_disabled');
+    });
+}
+
 function openImage(cardImage) {
   cardImage.addEventListener('click', () => {
     popupImage.classList.add('popup_opened');
@@ -110,45 +134,33 @@ function handleAddFormSubmit(evt) {
   closeWindowAdd();
 }
 
+editButton.addEventListener('click', function () {
+  popupEdit.classList.add('popup_opened');
+  inputName.value = profileTitle.textContent;
+  inputAbout.value = profileSubtitle.textContent;
+});
+
+addButton.addEventListener('click', function () {
+  popupAdd.classList.add('popup_opened');
+});
+
+closeButtonEdit.addEventListener('click', closeWindowEdit);
+
+closeButtonAdd.addEventListener('click', closeWindowAdd);
+
+closeButtonImage.addEventListener('click', closeWindowImage);
+
+
+
+popupFormEdit.addEventListener('submit', handleEditFormSubmit);
+
+
+
+
+
+
+
+
+
 popupFormAdd.addEventListener('submit', handleAddFormSubmit);
 
-const initialCards = [
-  {
-    name: 'Дагестан',
-    link: './images/dagestan.jpg',
-  },
-  {
-    name: 'Москва',
-    link: './images/moscow.jpg',
-  },
-  {
-    name: 'Мурманск',
-    link: './images/murmansk.jpg',
-  },
-  {
-    name: 'Нижний Новгород',
-    link: './images/nijniy_novgorod.jpg',
-  },
-  {
-    name: 'Омск',
-    link: './images/omsk.jpg',
-  },
-  {
-    name: 'Санкт-Петербург',
-    link: './images/saint_pitersburg.jpg',
-  },
-];
-
-for (let elem of initialCards) {
-  const cardElement = elementsTemplate
-    .querySelector('.elements__element')
-    .cloneNode(true); //li + clone
-  const cardImage = cardElement.querySelector('.elements__image');
-  cardImage.src = elem.link;
-  cardImage.alt = elem.name;
-  cardElement.querySelector('.elements__caption').textContent = elem.name;
-  toggleLikeButton(cardElement);
-  removeListItem(cardElement);
-  openImage(cardImage);
-  cardElements.append(cardElement); //append to ul
-}
