@@ -1,3 +1,29 @@
+const popupEdit = document.querySelector('.popup_type_edit');
+const popupAdd = document.querySelector('.popup_type_add');
+
+const popupFormEdit = document.querySelector('.popup__edit_type_edit');
+const popupFormAdd = document.querySelector('.popup__edit_type_add');
+
+const editButton = document.querySelector('.profile__edit-button');
+const addButton = document.querySelector('.profile__add-button');
+const closeButtonEdit = document.querySelector('.popup__close_type_edit');
+const closeButtonAdd = document.querySelector('.popup__close_type_add');
+const inputName = document.querySelector('.popup__input_type_name');
+const inputAbout = document.querySelector('.popup__input_type_job');
+const inputTitle = document.querySelector('.popup__input_type_title');
+const inputLink = document.querySelector('.popup__input_type_link');
+const profileTitle = document.querySelector('.profile__title');
+const profileSubtitle = document.querySelector('.profile__subtitle');
+
+const cardElements = document.querySelector('.elements'); // ul
+const elementsTemplate = document.querySelector('#elements').content; //template
+
+//popup for open images from blocks
+const popupImage = document.querySelector('.popup_type_image');
+const closeButtonImage = document.querySelector('.popup__close_type_image');
+const popupOpenedImage = document.querySelector('.popup__opened-image');
+const popupOpenedText = document.querySelector('.popup__opened-title');
+
 const initialCards = [
   {
     name: 'Дагестан',
@@ -40,31 +66,7 @@ for (let elem of initialCards) {
 }
 
 
-const popupEdit = document.querySelector('.popup_type_edit');
-const popupAdd = document.querySelector('.popup_type_add');
 
-const popupFormEdit = document.querySelector('.popup__edit_type_edit');
-const popupFormAdd = document.querySelector('.popup__edit_type_add');
-
-const editButton = document.querySelector('.profile__edit-button');
-const addButton = document.querySelector('.profile__add-button');
-const closeButtonEdit = document.querySelector('.popup__close_type_edit');
-const closeButtonAdd = document.querySelector('.popup__close_type_add');
-const inputName = document.querySelector('.popup__input_type_name');
-const inputAbout = document.querySelector('.popup__input_type_job');
-const inputTitle = document.querySelector('.popup__input_type_title');
-const inputLink = document.querySelector('.popup__input_type_link');
-const profileTitle = document.querySelector('.profile__title');
-const profileSubtitle = document.querySelector('.profile__subtitle');
-
-const cardElements = document.querySelector('.elements'); // ul
-const elementsTemplate = document.querySelector('#elements').content; //template
-
-//popup for open images from blocks
-const popupImage = document.querySelector('.popup_type_image');
-const closeButtonImage = document.querySelector('.popup__close_type_image');
-const popupOpenedImage = document.querySelector('.popup__opened-image');
-const popupOpenedText = document.querySelector('.popup__opened-title');
 
 function closeWindowEdit() {
   //refactor
