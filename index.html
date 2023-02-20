@@ -24,69 +24,59 @@
         </div>
         <button class="profile__add-button" type="button"></button>
       </section>
-      <section class="center">
+      <section class="center" aria-label="h2">
         <ul class="elements">
-          <li class="elements__element">
-            <img class="elements__image" src="./images/dagestan.jpg" alt="Дагестан">
-            <div class="elements__info">
-              <h2 class="elements__caption hide-text">Дагестан</h2>
-              <button class="elements__like-button elements__like-button_disabled" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <img class="elements__image" src="./images/moscow.jpg" alt="Москва">
-            <div class="elements__info">
-              <h2 class="elements__caption hide-text">Москва</h2>
-              <button class="elements__like-button elements__like-button_disabled" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <img class="elements__image" src="./images/murmansk.jpg" alt="Мурманск">
-            <div class="elements__info">
-              <h2 class="elements__caption hide-text">Мурманск</h2>
-              <button class="elements__like-button elements__like-button_disabled" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <img class="elements__image" src="./images/nijniy_novgorod.jpg" alt="Нижний Новгород">
-            <div class="elements__info">
-              <h2 class="elements__caption hide-text">Нижний Новгород</h2>
-              <button class="elements__like-button elements__like-button_disabled" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <img class="elements__image" src="./images/omsk.jpg" alt="Омск">
-            <div class="elements__info">
-              <h2 class="elements__caption hide-text">Омск</h2>
-              <button class="elements__like-button elements__like-button_disabled" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <img class="elements__image" src="./images/saint_pitersburg.jpg" alt="Санкт-Петербург">
-            <div class="elements__info">
-              <h2 class="elements__caption hide-text">Санкт-Петербург</h2>
-              <button class="elements__like-button elements__like-button_disabled" type="button"></button>
-            </div>
-          </li>
+          <template id="elements">
+            <li class="elements__element">
+              <img class="elements__image" src="" alt="">
+              <button class="elements__trash" type="button"></button>
+              <div class="elements__info">
+                <h2 class="elements__caption hide-text"></h2>
+                <button class="elements__like-button" type="button"></button>
+              </div>
+            </li>
+          </template>
         </ul>
+
       </section>
     </main>
     <footer class="footer center">
       <p class="footer__text">&#169; 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+
+    <div class="popup popup_type_edit">
       <div class="popup__container">
-        <form class="popup__edit center" name="popup" method="post">
+        <form class="popup__edit popup__edit_type_edit center" name="popup" method="post">
           <h3 class="popup__heading">Редактировать профиль</h3>
           <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя">
           <input type="text" name="about" class="popup__input popup__input_type_job" placeholder="О себе">
           <button class="popup__save" type="submit">Сохранить</button>
         </form>
-        <button class="popup__close" type="button"></button>
+        <button class="popup__close popup__close_type_edit" type="button"></button>
       </div>
     </div>
-  </div>
-  <script src="./scripts/script.js"></script>
+
+    <div class="popup popup_type_add">
+      <div class="popup__container">
+        <form class="popup__edit popup__edit_type_add center" name="popup" method="post">
+          <h3 class="popup__heading">Новое место</h3>
+          <input type="text" name="name" class="popup__input popup__input_type_title" placeholder="Название">
+          <input type="text" name="about" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку">
+          <button class="popup__save" type="submit">Создать</button>
+        </form>
+        <button class="popup__close popup__close_type_add" type="button"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_type_image">
+      <div class="popup__container">
+        <img src="" alt="Москва" class="popup__opened-image"></img>
+        <p class="popup__opened-title"></p>
+        <button class="popup__close popup__close_type_image" type="button"></button>
+      </div>
+
+    </div>
+    <script src="./scripts/script.js"></script>
 </body>
 
 </html>

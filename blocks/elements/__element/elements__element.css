@@ -1,3 +1,4 @@
 .elements__element {
+  position: relative;
 	margin: 0;
 }

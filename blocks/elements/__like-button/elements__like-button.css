@@ -3,17 +3,9 @@
 	width: 22px;
 	padding: 0;
 	border: none;
-	background-color: transparent;
 	align-self: center;
+  background: url(../../../images/__like-disabled.svg) center no-repeat;
 	transition: opacity 0.5s ease-out;
-}
-
-.elements__like-button_disabled {
-	background-image: url("../../../images/__like-disabled.svg");
-}
-
-.elements__like-button_active {
-	background-image: url("../../../images/__like-active.svg");
 }
 
 .elements__like-button:hover {
