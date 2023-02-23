@@ -1,4 +1,4 @@
-# **First part of social network about traveling**
+# **Second part of social network about traveling**
 
 
 **Language: russian**
