@@ -141,10 +141,10 @@ const createCard = (cardObject) => {
     .querySelector('.elements__element')
     .cloneNode(true); //li + clone
   const cardImage = cardElement.querySelector('.elements__image');
-  cardImage.src = cardObject.link;
+  cardImage.setAttribute('src', cardObject.link)
   const cardHeading = cardElement.querySelector('.elements__caption');
   cardHeading.textContent = cardObject.name;
-  cardImage.alt = `Фотография города ${cardHeading.textContent}`;
+  cardImage.setAttribute('alt', `Фотография города ${cardHeading.textContent}`)
   cardElements.prepend(cardElement);
   toggleLikeButton(cardElement);
   removeCard(cardElement);
