@@ -57,8 +57,8 @@ editButton.addEventListener('click', function () {
 // close all buttons
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup))
-})
+  button.addEventListener('click', () => closePopup(popup));
+});
 
 submitForm(popupFormEdit, handleFormSubmitProfile);
 
@@ -69,13 +69,13 @@ function handleFormSubmitCard(evt) {
     name: inputTitle.value,
     link: inputLink.value,
   };
-  createCard(card);
+  createCards(card, cardElements);
   closePopup(popupAdd);
 }
 
 addButton.addEventListener('click', function () {
   openPopup(popupAdd);
-  popupFormAdd.reset()
+  popupFormAdd.reset();
 });
 
 submitForm(popupFormAdd, handleFormSubmitCard);
@@ -136,15 +136,23 @@ const createCard = (cardObject) => {
     .querySelector('.elements__element')
     .cloneNode(true); //li + clone
   const cardImage = cardElement.querySelector('.elements__image');
-  cardImage.setAttribute('src', cardObject.link)
+  cardImage.setAttribute('src', cardObject.link);
   const cardHeading = cardElement.querySelector('.elements__caption');
   cardHeading.textContent = cardObject.name;
-  cardImage.setAttribute('alt', `Фотография города ${cardHeading.textContent}`)
-  cardElements.prepend(cardElement);
+  cardImage.setAttribute('alt', `Фотография города ${cardHeading.textContent}`);
   toggleLikeButton(cardElement);
   removeCard(cardElement);
   openImage(cardImage);
-  return cardObject;
+  return cardElement;
 };
 
-const cards = initialCards.reverse().forEach(createCard);
+const createCards = (card, cardsContainer) => {
+  const element = createCard(card);
+  cardsContainer.prepend(element);
+};
+
+const cards = initialCards.reverse();
+
+cards.forEach((element) => {
+  createCards(element, cardElements);
+});
