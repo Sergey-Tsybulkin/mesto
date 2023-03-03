@@ -19,3 +19,4 @@
 	+ media querries
 	+ Git pages
 	+ scripts
+  + validate
