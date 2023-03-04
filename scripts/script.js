@@ -1,3 +1,4 @@
+const popups = Array.from(document.querySelectorAll('.popup'));
 //template+ul
 const cardElements = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('#elements').content;
@@ -15,6 +16,7 @@ const popupFormEdit = document.querySelector('.popup__edit_type_edit');
 const addButton = document.querySelector('.profile__add-button');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupFormAdd = document.querySelector('.popup__edit_type_add');
+const submitButtonAddForm = document.querySelector('.popup__save_type_add');
 
 // Inputs
 const inputName = document.querySelector('.popup__input_type_name');
@@ -32,6 +34,7 @@ const popupContainer = document.querySelector('.popup__container');
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closingByEsc);
 }
 
 function openPopup(popup) {
@@ -79,6 +82,8 @@ function handleFormSubmitCard(evt) {
 addButton.addEventListener('click', function () {
   openPopup(popupAdd);
   popupFormAdd.reset();
+  submitButtonAddForm.classList.add('popup__save_type_inactive');
+  submitButtonAddForm.disabled = true;
 });
 
 submitForm(popupFormAdd, handleFormSubmitCard);
@@ -161,22 +166,18 @@ cards.forEach((element) => {
 });
 
 const closingByEsc = (evt) => {
-  const popups = Array.from(document.querySelectorAll('.popup'));
-  popups.forEach((popup) => {
-    if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
-      closePopup(popup);
-      document.removeEventListener('keydown', closingByEsc);
-    }
-  });
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
 };
 
 const closingOverlays = () => {
-  const popups = Array.from(document.querySelectorAll('.popup'));
   popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
       const isClosest = evt.target.closest('.popup__container');
       if (!isClosest && popup.classList.contains('popup_opened')) {
-        popup.classList.remove('popup_opened');
+        closePopup(popup);
       }
     });
   });
