@@ -12,6 +12,8 @@
     + BEM (nested)
   + layout
 	+ JavaScript
+    + OOP
+    + modules
 
 * Adding new stack
 	+ grid
