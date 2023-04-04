@@ -67,4 +67,10 @@ export class FormValidator {
     });
     this._setEventListeners();
   }
+
+  disableSubmitButton() {
+    // this._buttonElement.disabled = true;
+    // this._buttonElement.classList.add(this._settings.inactiveButtonClass);
+    this._toggleButtonState()
+  }
 }

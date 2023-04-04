@@ -21,6 +21,12 @@ import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
 import { openPopup, closePopup } from './utils.js';
 
+const validateEditForm = new FormValidator(popupFormEdit, cardConfig);
+validateEditForm.enableValidation();
+
+const validateAddForm = new FormValidator(popupFormAdd, cardConfig);
+validateAddForm.enableValidation();
+
 function submitForm(formName, handleFormSubmit) {
   formName.addEventListener('submit', handleFormSubmit);
 }
@@ -37,8 +43,6 @@ editButton.addEventListener('click', function () {
   openPopup(popupEdit);
   inputName.value = profileTitle.textContent;
   inputAbout.value = profileSubtitle.textContent;
-  const validateEditForm = new FormValidator(popupFormEdit, cardConfig);
-  validateEditForm.enableValidation();
 });
 
 submitForm(popupFormEdit, handleFormSubmitProfile);
@@ -58,10 +62,7 @@ function handleFormSubmitCard(evt) {
 addButton.addEventListener('click', function () {
   openPopup(popupAdd);
   popupFormAdd.reset();
-  submitButtonAddForm.classList.add('popup__save_type_inactive');
-  submitButtonAddForm.disabled = true;
-  const validateAddForm = new FormValidator(popupFormAdd, cardConfig);
-  validateAddForm.enableValidation();
+  validateAddForm.disableSubmitButton();
 });
 
 submitForm(popupFormAdd, handleFormSubmitCard);
