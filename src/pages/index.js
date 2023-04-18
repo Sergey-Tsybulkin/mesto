@@ -1,4 +1,5 @@
-import Card from './Card.js';
+import './index.css';
+import Card from '../components/Card.js';
 
 import {
   cardConfig,
@@ -8,14 +9,14 @@ import {
   elementTemplate,
   nameInput,
   aboutInput,
-} from './constants.js';
+} from '../utils/constants.js';
 
-import Section from './Section.js';
-import FormValidator from './FormValidator.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
-// import '../pages/index.css';
+import Section from '../components/Section.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+
 
 const popupImage = new PopupWithImage('.popup_type_image');
 popupImage.setEventListeners();
