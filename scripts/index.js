@@ -1,25 +1,43 @@
+import Card from './Card.js';
+
 import {
   cardConfig,
   initialCards,
-  popups,
-  cardElements,
-  profileTitle,
-  profileSubtitle,
-  editButton,
-  popupEdit,
   popupFormEdit,
-  addButton,
-  popupAdd,
   popupFormAdd,
-  submitButtonAddForm,
-  inputName,
-  inputAbout,
-  inputTitle,
-  inputLink,
+  elementTemplate,
+  nameInput,
+  aboutInput,
 } from './constants.js';
-import { FormValidator } from './FormValidator.js';
-import { Card } from './Card.js';
-import { openPopup, closePopup } from './utils.js';
+
+import Section from './Section.js';
+import FormValidator from './FormValidator.js';
+import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
+// import '../pages/index.css';
+
+const popupImage = new PopupWithImage('.popup_type_image');
+popupImage.setEventListeners();
+
+const createCards = (data, template) => {
+  const element = new Card(data, template, handleCardClick);
+  const cardElement = element.generateCard();
+  return cardElement;
+};
+
+function handleCardClick(data) {
+  popupImage.open(data);
+}
+
+const cardsSection = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => createCards(item, elementTemplate),
+  },
+  '.elements'
+);
+cardsSection.renderItem();
 
 const validateEditForm = new FormValidator(popupFormEdit, cardConfig);
 validateEditForm.enableValidation();
@@ -27,65 +45,32 @@ validateEditForm.enableValidation();
 const validateAddForm = new FormValidator(popupFormAdd, cardConfig);
 validateAddForm.enableValidation();
 
-function submitForm(formName, handleFormSubmit) {
-  formName.addEventListener('submit', handleFormSubmit);
-}
-
-// edit form
-function handleFormSubmitProfile(evt) {
-  evt.preventDefault();
-  profileTitle.textContent = inputName.value;
-  profileSubtitle.textContent = inputAbout.value;
-  closePopup(popupEdit);
-}
-
-editButton.addEventListener('click', function () {
-  openPopup(popupEdit);
-  inputName.value = profileTitle.textContent;
-  inputAbout.value = profileSubtitle.textContent;
+const addPopup = new PopupWithForm('.popup_type_add', () => {
+  const inputValues = addPopup.getInputValues();
+  cardsSection.addItem(inputValues);
+  addPopup.close();
 });
 
-submitForm(popupFormEdit, handleFormSubmitProfile);
-
-//add form
-function handleFormSubmitCard(evt) {
-  evt.preventDefault();
-  const card = {
-    name: inputTitle.value,
-    link: inputLink.value,
-  };
-  const newCard = createCards(card, '#elements');
-  cardElements.prepend(newCard);
-  closePopup(popupAdd);
-}
-
-addButton.addEventListener('click', function () {
-  openPopup(popupAdd);
-  popupFormAdd.reset();
+document.querySelector('.profile__add-button').addEventListener('click', () => {
   validateAddForm.disableSubmitButton();
+  addPopup.open();
+});
+addPopup.setEventListeners();
+
+const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
+
+const profileEditPopup = new PopupWithForm('.popup_type_edit', () => {
+  userInfo.setUserInfo(profileEditPopup.getInputValues());
+  profileEditPopup.close();
 });
 
-submitForm(popupFormAdd, handleFormSubmitCard);
-
-const createCards = (card, cardsContainer) => {
-  const element = new Card(card, cardsContainer);
-  const cardElement = element.generateCard();
-  return cardElement;
-};
-
-initialCards.forEach((elem) => {
-  const newCard = createCards(elem, '#elements');
-  cardElements.append(newCard);
-});
-
-// closing all popups + all buttons
-popups.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains('popup__close')) {
-      closePopup(popup);
-    }
+document
+  .querySelector('.profile__edit-button')
+  .addEventListener('click', () => {
+    validateEditForm.disableSubmitButton();
+    const datas = userInfo.getUserInfo();
+    nameInput.value = datas.name;
+    aboutInput.value = datas.info;
+    profileEditPopup.open();
   });
-});
+profileEditPopup.setEventListeners();

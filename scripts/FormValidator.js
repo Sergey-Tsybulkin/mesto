@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(formElement, settings) {
     this._formElement = formElement;
     this._settings = settings;
@@ -69,8 +69,6 @@ export class FormValidator {
   }
 
   disableSubmitButton() {
-    // this._buttonElement.disabled = true;
-    // this._buttonElement.classList.add(this._settings.inactiveButtonClass);
-    this._toggleButtonState()
+    this._toggleButtonState();
   }
 }
