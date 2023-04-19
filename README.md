@@ -23,3 +23,7 @@
 	+ Git pages
 	+ scripts
   + validate
+
+npm i - установка 
+
+npm run dev - запуск проекта на локальном сервере
