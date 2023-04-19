@@ -5,14 +5,20 @@ export default class Section {
     this._container = document.querySelector(containerSelector);
   }
 
+
+  
   addItem(item) {
-    const card = this._renderer(item);
-    this._container.prepend(card);
+    this._container.prepend(item);
   }
 
-  renderItem() {
+  renderItem(item) {
+    const card = this._renderer(item); 
+    this.addItem(card);
+}
+
+  renderItems() {
     this._items.forEach((item) => {
-      this.addItem(item);
+      this.renderItem(item);
     });
   }
 }

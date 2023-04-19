@@ -11,7 +11,6 @@ import {
   initialCards,
   popupFormEdit,
   popupFormAdd,
-  elementTemplate,
   nameInput,
   aboutInput,
 } from '../utils/constants.js';
@@ -19,7 +18,7 @@ import {
 const popupImage = new PopupWithImage('.popup_type_image');
 popupImage.setEventListeners();
 
-const createCards = (data, template) => {
+const createCard = (data, template) => {
   const element = new Card(data, template, handleCardClick);
   const cardElement = element.generateCard();
   return cardElement;
@@ -31,12 +30,12 @@ function handleCardClick(data) {
 
 const cardsSection = new Section(
   {
-    items: initialCards,
-    renderer: (item) => createCards(item, elementTemplate),
+    items: initialCards.reverse(),
+    renderer: (item) => createCard(item, '.element-template'),
   },
   '.elements'
 );
-cardsSection.renderItem();
+cardsSection.renderItems();
 
 const validateEditForm = new FormValidator(popupFormEdit, cardConfig);
 validateEditForm.enableValidation();
@@ -44,32 +43,32 @@ validateEditForm.enableValidation();
 const validateAddForm = new FormValidator(popupFormAdd, cardConfig);
 validateAddForm.enableValidation();
 
-const addPopup = new PopupWithForm('.popup_type_add', () => {
-  const inputValues = addPopup.getInputValues();
-  cardsSection.addItem(inputValues);
+const addPopup = new PopupWithForm('.popup_type_add', (inputValues) => {
+  inputValues = addPopup._getInputValues();
+  cardsSection.renderItem(inputValues);
   addPopup.close();
 });
 
 document.querySelector('.profile__add-button').addEventListener('click', () => {
-  validateAddForm.disableSubmitButton();
+  validateAddForm.toggleButtonState();
   addPopup.open();
 });
 addPopup.setEventListeners();
 
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
 
-const profileEditPopup = new PopupWithForm('.popup_type_edit', () => {
-  userInfo.setUserInfo(profileEditPopup.getInputValues());
+const profileEditPopup = new PopupWithForm('.popup_type_edit', (inputValues) => {
+  inputValues = userInfo.setUserInfo(profileEditPopup._getInputValues());
   profileEditPopup.close();
 });
 
 document
   .querySelector('.profile__edit-button')
   .addEventListener('click', () => {
-    validateEditForm.disableSubmitButton();
-    const datas = userInfo.getUserInfo();
-    nameInput.value = datas.name;
-    aboutInput.value = datas.info;
+    validateEditForm.toggleButtonState();
+    const data = userInfo.getUserInfo();
+    nameInput.value = data.name;
+    aboutInput.value = data.info;
     profileEditPopup.open();
   });
 profileEditPopup.setEventListeners();

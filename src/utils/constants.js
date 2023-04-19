@@ -7,7 +7,7 @@ const cardConfig = {
   errorClass: 'popup__input-error_active',
 };
 
-const elementTemplate = document.querySelector('.element-template');
+// const elementTemplate = document.querySelector('.element-template');
 const popupFormAdd = document
   .querySelector('.popup_type_add')
   .querySelector('.popup__edit');
@@ -56,7 +56,7 @@ export {
   initialCards,
   popupFormEdit,
   popupFormAdd,
-  elementTemplate,
   nameInput,
   aboutInput,
+
 };

@@ -14,6 +14,7 @@
 	+ JavaScript
     + OOP
     + modules
+  + Webpack
 
 * Adding new stack
 	+ grid
