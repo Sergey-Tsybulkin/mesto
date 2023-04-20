@@ -10,9 +10,6 @@ export default class Popup {
     this._popup.classList.add('popup_opened');
     document.addEventListener('keydown', this._closingByEsc);
     this._popup.addEventListener('click', this._handleOverlayClose);
-    if (this._popup.classList.contains('popup_type_image')) {
-      this._popup.style.background = 'rgba(0,0,0,.9)';
-    }
   }
 
   close() {

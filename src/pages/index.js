@@ -44,9 +44,7 @@ const validateAddForm = new FormValidator(popupFormAdd, cardConfig);
 validateAddForm.enableValidation();
 
 const addPopup = new PopupWithForm('.popup_type_add', (inputValues) => {
-  inputValues = addPopup._getInputValues();
   cardsSection.renderItem(inputValues);
-  addPopup.close();
 });
 
 document.querySelector('.profile__add-button').addEventListener('click', () => {
@@ -58,8 +56,7 @@ addPopup.setEventListeners();
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
 
 const profileEditPopup = new PopupWithForm('.popup_type_edit', (inputValues) => {
-  inputValues = userInfo.setUserInfo(profileEditPopup._getInputValues());
-  profileEditPopup.close();
+  userInfo.setUserInfo(inputValues);
 });
 
 document
