@@ -60,3 +60,11 @@ export {
   aboutInput,
 
 };
+
+export const apiConfig = {
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-65',
+  headers: {
+    "authorization": "e5cf9ce5-83ea-4919-bb56-96280137220a",
+    "Content-Type": "application/json"
+  }
+}
