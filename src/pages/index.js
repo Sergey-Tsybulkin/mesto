@@ -58,7 +58,7 @@ Promise.all([api.getProfile(), api.getInitialCards()])
 
 // ##### button open popup adding photo #####
 addButton.addEventListener('click', () => {
-  // validateAddForm.resetPopupForm(); 
+  validateAddForm.resetPopupForm(); 
   popupWithFormAdd.open();
 });
 
@@ -111,7 +111,7 @@ const createCard = (data) => {
     handleaddLike: (cardId) => {
       api.addLike(cardId)
         .then((data) => {
-          card.handleLikeCard(data);
+          card.handleLikeButton(data);
         })
         .catch((err) => {
           console.log(`Error: ${err}`);
@@ -120,7 +120,7 @@ const createCard = (data) => {
     handleDeleteLike: (cardId) => {
       api.deleteLike(cardId)
         .then((data) => {
-          card.handleLikeCard(data);
+          card.handleLikeButton(data);
         })
         .catch((err) => {
           console.log(`Error: ${err}`);
@@ -137,7 +137,7 @@ const cardsList = new Section({
     cardsList.addItem(cardArray, 'append');
   }
 },
-  '.elements__element');
+  '.elements');
 
 
 const popupViewImage = new PopupWithImage('.popup_type_image');
@@ -158,7 +158,7 @@ editButton.addEventListener('click', () => {
   const profileInfo = userInfo.getProfile();
   nameInput.value = profileInfo.name;
   aboutInput.value = profileInfo.about;
-  // validateEditForm.resetPopupForm(); 
+  validateEditForm.resetPopupForm(); 
   popupWithFormEdit.open();
 });
 
@@ -184,7 +184,7 @@ popupWithFormEdit.setEventListeners();
 
 
 buttonAvatar.addEventListener('click', () => {
-  // validationPopupAvatar.resetPopupForm();
+  validationPopupAvatar.resetPopupForm();
   popupWithFormAvatar.open();
 });
 

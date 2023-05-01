@@ -21,8 +21,8 @@ export default class Api {
     }).then(this._getHandleData);
   }
 
+  // change profile info on server
   editProfile(data) {
-    // change profile info on server
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -40,7 +40,6 @@ export default class Api {
     }).then(this._getHandleData);
   }
 
-
   setUserAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
@@ -50,7 +49,6 @@ export default class Api {
       }),
     }).then(this._getHandleData);
   }
-
 
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
@@ -63,7 +61,6 @@ export default class Api {
     }).then(this._getHandleData);
   }
 
-
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
@@ -71,14 +68,12 @@ export default class Api {
     }).then(this._getHandleData);
   }
 
-
   addLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers,
     }).then(this._getHandleData);
   }
-
 
   deleteLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {

@@ -3,7 +3,7 @@
 export const editButton = document.querySelector('.profile__edit-button'); 
 export const formEditProfile = document.querySelector('.popup__edit_type_edit'); 
 export const popupFormAdd = document.querySelector('.popup__edit_type_add'); 
-export const buttonAvatar = document.querySelector('.profile__edit-avatar'); 
+export const buttonAvatar = document.querySelector('.profile__avatar-button'); 
 
 export const formAvatar = document.querySelector('#update-avatar');
 export const nameInput = formEditProfile.querySelector('#name-input');
