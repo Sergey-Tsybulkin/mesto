@@ -1,10 +1,12 @@
 import Popup from './Popup.js';
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, callbackSubmitForm) {
+  constructor({ submitForm }, popupSelector) {
     super(popupSelector);
-    this._callbackSubmitForm = callbackSubmitForm;
+    this._submitForm = submitForm;
     this._popupForm = this._popup.querySelector('.popup__edit');
-    this._popupInputList = this._popup.querySelectorAll('.popup__input');
+    this._popupInputList = this._popupForm.querySelectorAll('.popup__input');
+    this._submitButton = this._popupForm.querySelector('.popup__save');
+    this._submitButtonText = this._submitButton.textContent;
   }
 
   _getInputValues() {
@@ -16,16 +18,22 @@ export default class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    super.setEventListeners();
-    this._popupForm.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      this._callbackSubmitForm(this._getInputValues());
-      this.close();
+    this._popupForm.addEventListener('submit', () => {
+      this._submitForm(this._getInputValues());
     });
+    super.setEventListeners();
   }
 
   close() {
     this._popupForm.reset();
     super.close();
+  }
+
+  loading(isLoading, downloadMessage = 'Сохранение...') {
+    if (isLoading) {
+      this._submitButton.textContent = downloadMessage;
+    } else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
   }
 }
