@@ -3,7 +3,7 @@
   background-size: contain;
   width: 18px;
   height: 19px;
-  background-image: url('../../../images/__trash.svg');
+  background-image: url(../../../images/trash.svg);
   background-color: transparent;
   border: none;
   top: 20px;

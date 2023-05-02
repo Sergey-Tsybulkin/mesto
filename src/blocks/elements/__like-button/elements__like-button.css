@@ -4,7 +4,7 @@
 	padding: 0;
 	border: none;
 	align-self: center;
-  background: url(../../../images/__like-disabled.svg) center no-repeat;
+  background: url(../../../images/like-disabled.svg) center no-repeat;
 	transition: opacity 0.5s ease-out;
 }
 

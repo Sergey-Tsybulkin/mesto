@@ -98,7 +98,7 @@ const createCard = (data) => {
       popupViewImage.open(name, link);
     },
 
-    handleDelIconClick: (cardId) => {
+    handleDeleteCard: (cardId) => {
       popupWithConfirm.open();
       popupWithConfirm.submitCallback(() => {
         api.deleteCard(cardId)
@@ -148,7 +148,7 @@ const popupViewImage = new PopupWithImage('.popup_type_image');
 popupViewImage.setEventListeners();
 
 
-const popupWithConfirm = new PopupWithConfirm('.popup_type_update-avatar');
+const popupWithConfirm = new PopupWithConfirm('.popup_type_delete-photo');
 popupWithConfirm.setEventListeners();
 
 
