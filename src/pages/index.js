@@ -19,7 +19,10 @@ import {
   nameInput,
   aboutInput,
   addButton,
-  cardConfig
+  cardConfig,
+  popupFormTypeEdit,
+  popupFormTypeAdd,
+  popupFormTypeAvatar
 } from "../utils/constants.js"
 
 // #####API#####
@@ -45,20 +48,21 @@ Promise.all([api.getProfile(), api.getInitialCards()])
   }
   );
 
-// const validateEditForm = new FormValidator(formEditProfile, cardConfig);
-// const validationPopupAvatar = new FormValidator(formAvatar, cardConfig);
-// const validateAddForm = new FormValidator(popupFormAdd, cardConfig);
 
-// validateEditForm.enableValidation(); 
-// validationPopupAvatar.enableValidation(); 
-// validateAddForm.enableValidation(); 
+const validateEditForm = new FormValidator(popupFormTypeEdit, cardConfig);
+const validationPopupAvatar = new FormValidator(popupFormTypeAvatar, cardConfig);
+const validateAddForm = new FormValidator(popupFormTypeAdd, cardConfig);
+
+validateEditForm.enableValidation(); 
+validationPopupAvatar.enableValidation(); 
+validateAddForm.enableValidation(); 
 
 
 //#####create cards#####
 
 // ##### button open popup adding photo #####
 addButton.addEventListener('click', () => {
-  validateAddForm.resetPopupForm(); 
+  validateAddForm.toggleButtonState(); 
   popupWithFormAdd.open();
 });
 
@@ -108,7 +112,7 @@ const createCard = (data) => {
       });
     },
 
-    handleaddLike: (cardId) => {
+    handleAddLike: (cardId) => {
       api.addLike(cardId)
         .then((data) => {
           card.handleLikeButton(data);
@@ -158,7 +162,7 @@ editButton.addEventListener('click', () => {
   const profileInfo = userInfo.getProfile();
   nameInput.value = profileInfo.name;
   aboutInput.value = profileInfo.about;
-  validateEditForm.resetPopupForm(); 
+  validateEditForm.toggleButtonState(); 
   popupWithFormEdit.open();
 });
 
@@ -184,7 +188,7 @@ popupWithFormEdit.setEventListeners();
 
 
 buttonAvatar.addEventListener('click', () => {
-  validationPopupAvatar.resetPopupForm();
+  validationPopupAvatar.toggleButtonState();
   popupWithFormAvatar.open();
 });
 
