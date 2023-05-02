@@ -2,11 +2,11 @@ export default class Api {
   constructor(options) {
     // receive url server and headers
     this._headers = options.headers;
-    this._baseUrl = options.baseUrl;
+    this._url = options.baseUrl;
   }
 
   // check answer from server
-  _getHandleData(res) {
+  _handleResponse(res) {
     if (res.ok) {
       return res.json(); // if yes => return data
     }
@@ -15,70 +15,81 @@ export default class Api {
 
   // request to server and get data profile
   getProfile() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: 'GET',
       headers: this._headers,
-    }).then(this._getHandleData);
+    }).then(this._handleResponse);
   }
 
   // change profile info on server
   editProfile(data) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name, //name = value name object (editProfile(data))
-        about: data.about, //about = value about object (editProfile(data))
+        about: data.about //about = value about object (editProfile(data))
       }),
-    }).then(this._getHandleData);
+    }).then(this._handleResponse);
   }
 
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._url}/cards`, {
       method: 'GET',
       headers: this._headers,
-    }).then(this._getHandleData);
+    }).then(this._handleResponse);
   }
 
+  // setUserAvatar(data) {
+  //   return fetch(`${this._url}/users/me/avatar`, {
+  //     method: 'PATCH',
+  //     headers: this._headers,
+  //     body: JSON.stringify({
+  //       avatar: data.avatar,
+  //     }),
+  //   }).then(this._handleResponse);
+  // }
   setUserAvatar(data) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    console.log(`${this._url}/users/me/avatar`)
+    return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.avatar,
-      }),
-    }).then(this._getHandleData);
+        avatar: data.avatar
+      })
+    }).then(this._handleResponse)
   }
 
   addCard(data) {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        link: data.link,
-      }),
-    }).then(this._getHandleData);
+        link: data.link
+      })
+    }).then(this._handleResponse);
   }
+  
 
   deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._getHandleData);
+    }).then(this._handleResponse);
   }
 
   addLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers,
-    }).then(this._getHandleData);
+    }).then(this._handleResponse);
   }
 
   deleteLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._getHandleData);
+    }).then(this._handleResponse);
   }
 }

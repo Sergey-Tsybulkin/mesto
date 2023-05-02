@@ -11,29 +11,31 @@ export default class PopupWithForm extends Popup {
 
   _getInputValues() {
     this._inputValues = {};
-    this._popupInputList.forEach((input) => {
+    this._popupInputList.forEach(input => {
       this._inputValues[input.name] = input.value;
     });
     return this._inputValues;
   }
 
   setEventListeners() {
-    this._popupForm.addEventListener('submit', () => {
+    this._popupForm.addEventListener("submit", () => {
       this._submitForm(this._getInputValues());
     });
     super.setEventListeners();
   }
 
   close() {
-    this._popupForm.reset();
     super.close();
+    this._popupForm.reset();
+    
   }
 
-  loading(isLoading, downloadMessage = 'Сохранение...') {
+  loading(isLoading) {
     if (isLoading) {
-      this._submitButton.textContent = downloadMessage;
+      this._submitButton.textContent = 'Сохранение...';
     } else {
       this._submitButton.textContent = this._submitButtonText;
     }
   }
 }
+

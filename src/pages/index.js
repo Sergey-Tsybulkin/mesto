@@ -1,6 +1,6 @@
 import './index.css';
 
-import Api from '../components/Api';
+import Api from '../components/Api.js';
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
@@ -49,9 +49,9 @@ Promise.all([api.getProfile(), api.getInitialCards()])
   );
 
 
-const validateEditForm = new FormValidator(popupFormTypeEdit, cardConfig);
-const validationPopupAvatar = new FormValidator(popupFormTypeAvatar, cardConfig);
-const validateAddForm = new FormValidator(popupFormTypeAdd, cardConfig);
+const validateEditForm = new FormValidator(formEditProfile, cardConfig);
+const validationPopupAvatar = new FormValidator(formAvatar, cardConfig);
+const validateAddForm = new FormValidator(popupFormAdd, cardConfig);
 
 validateEditForm.enableValidation(); 
 validationPopupAvatar.enableValidation(); 
@@ -62,7 +62,7 @@ validateAddForm.enableValidation();
 
 // ##### button open popup adding photo #####
 addButton.addEventListener('click', () => {
-  validateAddForm.toggleButtonState(); 
+  validateAddForm.resetPopupForm(); 
   popupWithFormAdd.open();
 });
 
@@ -71,8 +71,11 @@ const popupWithFormAdd = new PopupWithForm(
   {
     submitForm: (data) => {
       popupWithFormAdd.loading(true);
+      
       api.addCard(data)
+      
         .then((res) => {
+          
           cardsList.addItem(createCard(res), 'prepend');
           popupWithFormAdd.close();
         })
@@ -162,7 +165,7 @@ editButton.addEventListener('click', () => {
   const profileInfo = userInfo.getProfile();
   nameInput.value = profileInfo.name;
   aboutInput.value = profileInfo.about;
-  validateEditForm.toggleButtonState(); 
+  validateEditForm.resetPopupForm(); 
   popupWithFormEdit.open();
 });
 
@@ -188,7 +191,7 @@ popupWithFormEdit.setEventListeners();
 
 
 buttonAvatar.addEventListener('click', () => {
-  validationPopupAvatar.toggleButtonState();
+  validationPopupAvatar.resetPopupForm();
   popupWithFormAvatar.open();
 });
 
@@ -211,8 +214,4 @@ const popupWithFormAvatar = new PopupWithForm(
     }
   }, '.popup_type_update-avatar');
 popupWithFormAvatar.setEventListeners();
-
-
-
-
 
