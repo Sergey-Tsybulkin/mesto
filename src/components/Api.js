@@ -28,7 +28,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.name, //name = value name object (editProfile(data))
-        about: data.about //about = value about object (editProfile(data))
+        about: data.about, //about = value about object (editProfile(data))
       }),
     }).then(this._handleResponse);
   }
@@ -40,15 +40,14 @@ export default class Api {
     }).then(this._handleResponse);
   }
 
-
   setUserAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.avatar
-      })
-    }).then(this._handleResponse)
+        avatar: data.about,
+      }),
+    }).then(this._handleResponse);
   }
 
   addCard(data) {
@@ -57,11 +56,10 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        link: data.link
-      })
+        link: data.about,
+      }),
     }).then(this._handleResponse);
   }
-  
 
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {

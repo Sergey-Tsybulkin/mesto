@@ -1,5 +1,4 @@
 import './index.css';
-
 import Api from '../components/Api.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -19,9 +18,6 @@ import {
   aboutInput,
   addButton,
   cardConfig,
-  popupFormTypeEdit,
-  popupFormTypeAdd,
-  popupFormTypeAvatar,
 } from '../utils/constants.js';
 
 // #####API#####
@@ -46,6 +42,7 @@ Promise.all([api.getProfile(), api.getInitialCards()])
     console.log(`Error: ${err}`);
   });
 
+//##### Validation #####
 const validateEditForm = new FormValidator(formEditProfile, cardConfig);
 const validationPopupAvatar = new FormValidator(formAvatar, cardConfig);
 const validateAddForm = new FormValidator(popupFormAdd, cardConfig);
@@ -55,7 +52,6 @@ validationPopupAvatar.enableValidation();
 validateAddForm.enableValidation();
 
 //#####create cards#####
-
 // ##### button open popup adding photo #####
 addButton.addEventListener('click', () => {
   validateAddForm.resetPopupForm();
@@ -84,7 +80,6 @@ const popupWithFormAdd = new PopupWithForm(
 );
 popupWithFormAdd.setEventListeners();
 
-//
 const createCard = (data) => {
   const card = new Card(
     {

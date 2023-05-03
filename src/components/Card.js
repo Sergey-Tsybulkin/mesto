@@ -62,7 +62,6 @@ export default class Card {
   }
 
   _checkLikeUser() {
-    //_checkLikedState
     this._data.likes.forEach((likeUser) => {
       if (likeUser._id === this._userId) {
         this._likeButton.classList.add('elements__like-button_disabled');
@@ -96,4 +95,3 @@ export default class Card {
     });
   }
 }
-
